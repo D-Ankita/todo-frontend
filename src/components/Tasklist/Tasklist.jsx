@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 const style = {width:"80%",margin:" auto", padding:"10px", }
 
 function Tasklist({ todos ,updateTodo, deleteTodo,addTodo}) {
-  console.log("tasklist:: In taskList",todos);
+  // console.log("tasklist:: In taskList",todos);
   return (
     <Box style={style}
       sx={{width: '90%', height: 400, maxwidth: 600, bgcolor: 'background.paper',maxHeight: 350, overflow: 'auto', padding:" 10px" }}>

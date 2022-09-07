@@ -32,6 +32,7 @@ function Task({todo, updateTodo ,deleteTodo}){
     }    
 
     const deleteTask = ()=>{
+        //------------------------------------------------ALERT BOX HERE
         console.log("Confim to delete TASK",id);
         deleteTodo(id)
     }

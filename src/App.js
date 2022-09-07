@@ -6,7 +6,6 @@ import AddTodo from "./components/AddTodo/AddTodo";
 import axios from "axios";
 import SendIcon from '@mui/icons-material/Send';
 import { Alert, Button, Pagination, Paper, Stack, TextField, Typography } from "@mui/material";
-import VirtualizedList from "./components/Vlist/Vlist";
 
 const baseurl = "http://localhost:4000"
 function App() {
@@ -16,38 +15,37 @@ function App() {
   const [isTaskListChanged , setisTaskListChanged] = useState(false)
   const [pageNo, setPageNo] = useState(1);
   const [limit, setlimit] = useState(3);
+  const [totalPages, settotalPages] = useState();
+
     const fetchTask = () => {
     fetch(`${baseurl}/todos?page=${pageNo}&limit=${limit}`)
     .then((response) => response.json())
-    .then((data) => {
-      console.log("IN USE EFFECT--------FETCH - data",data);
-      setTaskList([...data.data])
+    .then((responseData) => {
+      // console.log("IN USE EFFECT--------FETCH - data",responseData);
+      setTaskList([...responseData.data])
+      // console.log("IN USE EFFECT--------FETCH - pageNo",responseData.totalPages);
+      settotalPages(responseData.totalPages);
     })
   }
-  // useEffect(() => {
-  //   fetch(`${baseurl}/todos?page=${pageNo}&limit=${limit}`)
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log("IN USE EFFECT--------FETCH",data);
-  //     let tosetData = data
-  //     console.log("IN USE EFFECT--------tosetData",tosetData);
-  //     setTaskList([...tosetData.data])
-  //   })
-  // },  [isTaskListChanged]);
+
   useEffect(() => {
     fetchTask();
   }, [isTaskListChanged]);
   useEffect(() => {
     fetchTask();
   }, [pageNo]);
-  useEffect(() => {console.log("IN USE EFFECT----||",taskList);}, [taskList]);  
+  useEffect(() => {
+    fetchTask();
+  }, [totalPages]);
+
+  // useEffect(() => {console.log("IN USE EFFECT----||",taskList);}, [taskList]);  
 
   const updateTodo = (id, description)=>{
-    console.log(description);
+    // console.log(description);
     const taskListCopy = [...taskList];
     let task = taskListCopy.find((task)=>task.id === id);
     task.description = description
-    console.log("Task",task);
+    // console.log("Task",task);
     setTaskList([...taskListCopy])
     fetch(`${baseurl}/todos/${id}`,{
       method:'PATCH',
@@ -63,8 +61,9 @@ function App() {
     // const taskListCopy = taskList.filter((task)=> task.id !== id);
     let taskListCopy = [...taskList]
     taskListCopy = taskListCopy.filter((task)=>task.id !== id)
-    console.log("after deletion",taskListCopy);
+    // console.log("after deletion",taskListCopy);
     setTaskList([...taskListCopy])
+    setisTaskListChanged(!isTaskListChanged)
     
     fetch(`${baseurl}/todos/${id}`,{
       method:'DELETE',
@@ -122,7 +121,7 @@ function App() {
       </Stack>
       </Paper>
     <Tasklist todos = {taskList} updateTodo={updateTodo} addTodo={addTodo} deleteTodo={deleteTodo}/>
-    <Pagination count={10} page={pageNo} variant="outlined" shape="rounded" onChange={handelPageChange}/>
+    <Pagination count={totalPages} page={pageNo} variant="outlined" shape="rounded" onChange={handelPageChange}/>
 </Stack>
   </Paper>;
 }
