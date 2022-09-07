@@ -1,3 +1,5 @@
-1. Add CSS using Venus Components
-2. Add a set limit button which will set the no of tasks to be shown at a time
-3. Add a dropdown button to show all tasks or show only Completed tasks or only Pending tasks
+# Reveerse ordering tasks
+# Pagination -- and corresponding displaying on Page 
+# Add CSS using Venus Components
+# Add a set limit button which will set the no of tasks to be shown at a time
+# Add a dropdown button to show all tasks or show only Completed tasks or only Pending tasks
