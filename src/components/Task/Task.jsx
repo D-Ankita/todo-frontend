@@ -22,7 +22,7 @@ function Task({todo, updateTodo ,deleteTodo,updateStatus}){
     const {id , description, isComplete} = todo
     const [isEditOn , setisEditOn] = useState(false);
     const [localValue , setlocalValue] = useState(description);
-    const [checked, setChecked] = useState(isComplete);
+    const [checked, setChecked] = useState(!isComplete);
 
     const EditTask=()=>{
         setisEditOn(!isEditOn)
