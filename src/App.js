@@ -2,8 +2,6 @@ import logo from "./logo.svg";
 // import "./App.css";
 import { useEffect, useState } from "react";
 import Tasklist from "./components/Tasklist/Tasklist";
-import AddTodo from "./components/AddTodo/AddTodo";
-import axios from "axios";
 import SendIcon from '@mui/icons-material/Send';
 import { Alert, Button, Pagination, Paper, Stack, TextField, Typography } from "@mui/material";
 
@@ -16,7 +14,6 @@ function App() {
   const [pageNo, setPageNo] = useState(1);
   const [limit, setlimit] = useState(3);
   const [totalPages, settotalPages] = useState();
-
     const fetchTask = () => {
     fetch(`${baseurl}/todos?page=${pageNo}&limit=${limit}`)
     .then((response) => response.json())
@@ -25,6 +22,9 @@ function App() {
       setTaskList([...responseData.data])
       // console.log("IN USE EFFECT--------FETCH - pageNo",responseData.totalPages);
       settotalPages(responseData.totalPages);
+      // console.log("IN USE EFFECT--------FETCH - isComplete",responseData);
+      // console.log("isCompleteStatus",isCompleteStatus);
+      // setIsCompleteStatus(responseData.data.isComplete)
     })
   }
 
@@ -55,6 +55,21 @@ function App() {
       },
       body:JSON.stringify({description:description})
     }).then((response)=>response.json()).then((data)=>console.log("DATA",data))
+  }
+
+  const updateStatus = (id,checked)=>{
+    const taskListCopy = [...taskList];
+    let task = taskListCopy.find((task)=>task.id === id);
+    task.isComplete = checked
+    setTaskList([...taskListCopy])
+    fetch(`${baseurl}/todos/${id}`,{
+      method:'PATCH',
+      // mode:'cors',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      body:JSON.stringify({isComplete:checked})
+    }).then((response)=>response.json()).then((data)=>console.log("DATA after status change",data))
   }
 
   const deleteTodo = (id)=>{
@@ -120,7 +135,7 @@ function App() {
         <Button variant="contained" onClick={addTodo} type="submit" size="large" endIcon={<SendIcon />}> Add </Button>
       </Stack>
       </Paper>
-    <Tasklist todos = {taskList} updateTodo={updateTodo} addTodo={addTodo} deleteTodo={deleteTodo}/>
+    <Tasklist todos = {taskList} updateStatus={updateStatus} updateTodo={updateTodo} addTodo={addTodo} deleteTodo={deleteTodo}/>
     <Pagination count={totalPages} page={pageNo} variant="outlined" shape="rounded" onChange={handelPageChange}/>
 </Stack>
   </Paper>;

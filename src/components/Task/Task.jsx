@@ -18,17 +18,19 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions';
 
 // }
 const style = {width:"100%",margin:"10px"}
-function Task({todo, updateTodo ,deleteTodo}){
-    const {id , description} = todo
+function Task({todo, updateTodo ,deleteTodo,updateStatus}){
+    const {id , description, isComplete} = todo
     const [isEditOn , setisEditOn] = useState(false);
     const [localValue , setlocalValue] = useState(description);
-    
+    const [checked, setChecked] = useState(isComplete);
+
     const EditTask=()=>{
         setisEditOn(!isEditOn)
     }
     const saveTask = ()=>{
         setisEditOn(!isEditOn)
         updateTodo(id,localValue)
+        
     }    
 
     const deleteTask = ()=>{
@@ -36,22 +38,23 @@ function Task({todo, updateTodo ,deleteTodo}){
         console.log("Confim to delete TASK",id);
         deleteTodo(id)
     }
+     const changeCompletionStatus=(event)=>{
+        console.log("checked",checked);
+        updateStatus(id,checked)
+        setChecked(!checked)
+     }
 
     return <Paper sx={{width:"100%", margin:"20px auto",size:"small"}}>
         <ListItem direction="row"
   justifycontent="flex-between"
   alignItems="center"
   spacing={7}>
-        
-        <Checkbox icon={<PendingActionsIcon  color="info"/>} checkedIcon={<CheckCircleIcon color="success"/>}   />
+        <Button onClick={changeCompletionStatus}>
+        <Checkbox checked={!checked} icon={<PendingActionsIcon   color="info"/>} checkedIcon={<CheckCircleIcon color="success"/>}   />
+        </Button>
         {/* <Checkbox onClick={props.onCheckBoxToggle} checked={props.checked} disableRipple /> */}
-        <TextField maxwidth="lg" sx={{width:"100%",margin:"10px", fullWidth:true}} color="secondary"  variant="filled" size="small" focused value={localValue } disabled={!isEditOn} id ={id} onChange={(e)=>setlocalValue(e.target.value)}></TextField>
+        <TextField  maxwidth="lg" sx={{width:"100%",margin:"10px", fullWidth:true}} color="secondary"  variant="filled" size="small" focused value={localValue } disabled={!isEditOn} id ={id} onChange={(e)=>setlocalValue(e.target.value)}></TextField>
 
-        {/* <input style={style} value={localValue } disabled={!isEditOn} id ={id} onChange={(e)=>setlocalValue(e.target.value)}/> */}
-        {/* {isEditOn ?<button onClick={saveTask}> Save </button> : <button  onClick={EditTask}> Edit </button>} */}
-        {/* <button onClick={deleteTask}> Delete </button> */}
-        {/* {isEditOn ?<Button variant="Contained" startIcon={<DeleteIcon />}>Save</Button> : <Button variant="Contained" startIcon={<EditIcon/>}/>} */}
-        {/* <IconButton variant="outlined" color="primary" startIcon={<DeleteIcon />}>Save</IconButton>  */}
         <Stack direction="row" justifyContent="center"  alignItems="center"  spacing={0}>
         {isEditOn ?
         
