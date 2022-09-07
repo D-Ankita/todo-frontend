@@ -136,7 +136,7 @@ function App() {
       </Stack>
       </Paper>
     <Tasklist todos = {taskList} updateStatus={updateStatus} updateTodo={updateTodo} addTodo={addTodo} deleteTodo={deleteTodo}/>
-    <Pagination count={totalPages} page={pageNo} variant="outlined" shape="rounded" onChange={handelPageChange}/>
+    <Pagination count={totalPages} page={pageNo} siblingCount={0} onChange={handelPageChange}/>
 </Stack>
   </Paper>;
 }
