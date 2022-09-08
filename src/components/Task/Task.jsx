@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TextInput, Icon,Button,Checkbox, cbModal } from "@contentstack/venus-components";
 import './Task.css'
 import { ButtonGroup } from "@mui/material";
-import ModalComponent from "../Modal/Modal";
+import DeleteModal from "../Modal/DeleteModal.jsx";
 
 const style = { width: "100%", margin: "10px" };
 
@@ -26,34 +26,32 @@ function Task({ todo, updateTodo, deleteTodo, updateStatus }) {
 
 	const deleteTask = () => {
 		//------------------------------------------------ALERT BOX HERE
-		handleModalClick()
-		console.log("Confim to delete TASK", id);
-		deleteTodo(id);
+		 deleteModal()
 	};
 	const changeCompletionStatus = (event) => {
-		console.log("checked", checked);
-		updateStatus(id, checked);
+		updateStatus(id, checked
+			);
 		setChecked(!checked);
 	};
 
-	const handleModalClick = () => {
+	const deleteModal = () => {
 		cbModal({
-		  component: ({...props}) => <ModalComponent {...props} />,
+		  component: ({...props}) => <DeleteModal 
+		  header={"this is header"}
+		  {...props} />,
 		  modalProps: {
-		    onModalClose,
+		    onClose:(status)=>{
+			if(status==="true"){
+				deleteTodo(id);
+			}
+		    },
 		    onOpen: () => {
 			console.log('onOpen gets called')
 		    },
-		    closeModal:()=>{
-			console.log("Closing the Modal");
-		    }
+		     size: 'tiny',
 		  },
 		  testId: 'cs-modal-storybook',
 		})
-	}
-
-	const onModalClose = () => {
-		console.log('on modal close')
 	}
 
 	return(
@@ -100,7 +98,7 @@ function Task({ todo, updateTodo, deleteTodo, updateStatus }) {
 						    }}
 						buttonType="primary"
 						icon="SaveWhite"
-						iconAlignment={undefined}
+						iconalignment={undefined}
 						onClick={saveTask}
 					>Save
 					</Button>) : 
@@ -111,18 +109,14 @@ function Task({ todo, updateTodo, deleteTodo, updateStatus }) {
 						    }}
 						buttonType="primary"		
 						icon="Edit"
-						iconAlignment={undefined}
+						iconalignment={undefined}
 						onClick={EditTask}
 					>Edit</Button>)}
 					
 					<Button buttonType="primary" onClick={deleteTask} style={{
-							backgroundColor: 'yellow'
+							backgroundColor: "#FA6E33"
 						    }}>
-						<Icon
-						icon="Delete"
-						iconAlignment={undefined}
-						fill="white"
-						> </Icon>
+						Delete
 					</Button>
 
 				</ButtonGroup>

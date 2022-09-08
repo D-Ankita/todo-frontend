@@ -1,5 +1,7 @@
-# Reveerse ordering tasks
-# Pagination -- and corresponding displaying on Page 
-# Add CSS using Venus Components
+# Reveerse ordering tasks  --done
+# Pagination -- and corresponding displaying on Page  --done --VenusPending
+# Add CSS using Venus Components --done
 # Add a set limit button which will set the no of tasks to be shown at a time
 # Add a dropdown button to show all tasks or show only Completed tasks or only Pending tasks
+# Venus -- Modal reusability -- only one modal will be defined which takes some props{"whoIsCallingModal" , heading} and returns the status to parent Components
+	--the  component will inturn return true or false and parent depending on what it gets back will perform actions.|

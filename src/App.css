@@ -39,7 +39,7 @@
 	box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
 }
 
-.App-inputComponent {
+.App-inputComponent  {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -53,7 +53,7 @@
 	padding: 0px 18px;
 	margin: auto;
 }
-.App-taskList {
+.App-taskList  {
   max-height: 450px;
   overflow-y: scroll;
   width: 90%;
@@ -66,3 +66,12 @@
   flex-direction: column;
 }
 
+
+.App-pagination{
+	display:flex;
+	flex-direction:row;
+	align-items: center;
+	justify-content: space-between;
+	width: 90%;
+	margin: 20px auto auto 10px;
+}
