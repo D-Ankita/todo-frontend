@@ -1,8 +1,30 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
 }
 
-.App-logo {
+.addTaskContainer{
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+  gap:2rem
+}
+
+.inputButton{
+ width: 10rem;
+}
+
+.Dropdown-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.appHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +57,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

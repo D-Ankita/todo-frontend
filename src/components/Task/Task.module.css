@@ -1,0 +1,30 @@
+.TaskContainer{
+    /* justify-items: center; */
+    /* align-items: center; */
+    display: flex;
+    gap: 2rem
+}
+
+.buttonContainer{
+    display: flex;
+    /* margin: auto; */
+    justify-content: center;
+    align-items: center;
+    /* margin: 2rem 0rem; */
+}
+
+.inputButton{
+    position: absolute;
+}
+.inputContainer{
+    position: relative;
+    display: block;
+    flex-direction: row;
+}
+.line{
+    border-bottom: 2px solid;
+    width: 40%;
+    z-index: 2;
+    top:35%;
+    position: absolute;
+}
