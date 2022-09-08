@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+App.js
+src\components\Task\Task1.jsx
 
 # testing
 /coverage

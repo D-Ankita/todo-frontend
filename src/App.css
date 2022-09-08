@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+/* font-family: 'Dancing Script', cursive; */
+@import url("https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap");
+/* font-family: 'Ms Madi', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Salsa&display=swap");
+/* font-family: 'Salsa', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Tillana:wght@400;600&display=swap");
+/* font-family: 'Tillana', cursive; */
+
+* {
+	box-sizing: border-box;
+}
+.App-heading {
+	text-align: center;
+	padding: 20px 0px 0px 0px;
+	color: #147765;
+	font-family: "Tillana", cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-todoComponent {
+	display: flex;
+	flex-direction: column;
+	justify-content: top;
+	/* align-items: center; */
+	max-width: 100%;
+	padding-top: 0%;
+	border-top-left-radius: 37px 140px;
+	border-top-right-radius: 23px 130px;
+	border-bottom-left-radius: 110px 19px;
+	border-bottom-right-radius: 120px 24px;
+	border: solid 3px #6e7491;
+	/* padding: 40px 60px; */
+	max-width: 700px;
+	min-height: 550px;
+	width: 70%;
+	margin: 10px auto 0;
+	/* transform: rotate(-1deg); */
+	box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.App-inputComponent {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: top;
+	margin: 10px auto;
+	padding-top: 0%;
+  transform: translate(-52px, 8px);
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+}
+.App-inputComponent > * {
+	padding: 0px 18px;
+	margin: auto;
+}
+.App-taskList {
+  max-height: 450px;
+  overflow-y: scroll;
+  width: 90%;
+  margin: 20px auto auto 10px;
+  padding-top: 0%;
+  transform: translate(32px, -8px);
+  justify-content: space-between;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

@@ -1,0 +1,31 @@
+*{
+	alignItems:center
+}
+.Task-Container{
+	width: 100%;
+	margin: 10px auto;
+}
+
+.Task-Item{
+	display:flex;
+	flex-direction:row;
+	justifycontent:flex-between;
+	alignItems:center;
+}
+.Task-Item > *{
+	margin:10px;
+}
+
+.Task-button-group{
+	display:flex;
+	flex-direction:row;
+	justifycontent:flex-between;
+	alignItems:center;
+}
+.Task-button-group > *{
+	margin:10px
+}
+
+.checkbox{
+	display:none
+}
