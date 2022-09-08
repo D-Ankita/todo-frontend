@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 App.js
-src\components\Task\Task1.jsx
+Task1.js
 
 # testing
 /coverage
